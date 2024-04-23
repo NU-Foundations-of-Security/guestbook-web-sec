@@ -13,8 +13,10 @@ const filter = async (db, queryParams) => {
             if (fields.length > 1 && fields[0].constructor == Array) {
                 let new_rows = []
                 for (let i = 0; i < fields.length; i++) {
-                    if (fields[i] != undefined) {
-                        new_rows.push(rows[i][0]);
+                    if (fields[i] != undefined && rows[i][0] != undefined) {
+                        for (let j = 0; j < rows[i].length; j++) {
+                            new_rows.push(rows[i][j]);
+                        }
                     }
                 }
                 rows = new_rows;
