@@ -11,7 +11,10 @@
             const getMessagesURL = `/api/filter_messages?name=${name}`;
             fetch(getMessagesURL)
                 .then((response) => {
-                    return response.json();
+                    if (response.ok)
+                        return response.json();
+                    else
+                        throw new Error('Unsuccessful response');
                 })
                 .then((data) => {
                     const ul = document.getElementById('messages');

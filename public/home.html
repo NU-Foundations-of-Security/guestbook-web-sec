@@ -15,7 +15,9 @@
 
             const queryParams = `name=${name}&message=${message}&display=${display}&address=${address}`;
             fetch(`/api/create_message?${queryParams}`)
-                .then((res) => res.json())
+                .then((res) => {
+                    return res.json();
+                })
                 .then(() => {
                     window.location.reload();
                 });

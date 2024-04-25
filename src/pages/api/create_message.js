@@ -2,7 +2,7 @@ import { getDatabase, closeDBInstance } from "@/lib/db";
 
 const createMessage = async (db, queryParams) => {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO messages (name, display, message, address) VALUES(\'${queryParams.name}\', ${queryParams.display}, \'${queryParams.address}\', \'${queryParams.message}\')`;
+        const query = `INSERT INTO messages (name, display, address, message) VALUES(\'${queryParams.name}\', ${queryParams.display}, \'${queryParams.address}\', \'${queryParams.message}\')`;
         console.log(query);
         db.query(query, (err, rows, fields) => {
             if (err) {
