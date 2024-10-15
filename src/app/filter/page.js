@@ -16,14 +16,9 @@ export default function Home() {
 
     const filterMessages = async () => {
         const matchingMessages = await fetch(`/api/filter_messages?name=${nameToFind}`)
-            .then((res) => {
-                if (res.ok) return res.json();
-                else return null;
-            });
-
-        if (matchingMessages) {
-            setMessages(matchingMessages);
-        } 
+            .then((res) => res.json());
+    
+        setMessages(matchingMessages);
     };
 
     // This hook executes on page rendered. When the page loads,
