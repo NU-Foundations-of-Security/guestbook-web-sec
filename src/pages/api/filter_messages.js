@@ -10,7 +10,7 @@ const filter = async (db, queryParams) => {
         const query = `SELECT message FROM messages WHERE name = \'${nameQuery}\'`;
         console.log(query);
         db.query(query, (err, rows, fields) => {
-            if (fields.length > 1 && fields[0].constructor == Array) {
+            if (fields.length >= 1 && fields[0].constructor == Array) {
                 let new_rows = []
                 for (let i = 0; i < fields.length; i++) {
                     if (fields[i] != undefined && rows[i][0] != undefined) {
