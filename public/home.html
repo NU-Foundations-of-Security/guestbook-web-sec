@@ -2,6 +2,8 @@
 
 <html>
 <head>
+    <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self'; script-src 'self' 'sha256-d0/GoTqz4Rtf1BEuFBcdpLbDGuFkd7M5cqVHuhdMVDo=';" />
     <title>Our wedding guestbook!</title>
     <script>
         const postMessage = (e) => {
@@ -55,9 +57,9 @@
                         trAddress.appendChild(tdAddress);
                         trMessage.appendChild(tdMessage);
 
-                        tdName.innerHTML = `From: ${msg.name}`;
-                        tdAddress.innerHTML = `Address: ${msg.address}`;
-                        tdMessage.innerHTML = `Message: ${msg.message}`;
+                        tdName.innerText = `From: ${msg.name}`;
+                        tdAddress.innerText = `Address: ${msg.address}`;
+                        tdMessage.innerText = `Message: ${msg.message}`;
 
                         ul.appendChild(list);
                     });
