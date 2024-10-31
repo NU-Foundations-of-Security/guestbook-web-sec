@@ -6,7 +6,7 @@
         window.onload = function () {
             const params = new URL(document.location).searchParams;
             const name = params.get("name");   
-            document.getElementById("filter-heading").innerHTML += name;
+            document.getElementById("filter-heading").innerText += name;
 
             const getMessagesURL = `/api/filter_messages?name=${name}`;
             fetch(getMessagesURL)
