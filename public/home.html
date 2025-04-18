@@ -1,0 +1,120 @@
+<!--Native HTML/JS approach to the guestbook to demonstrate certain vulnerabilities-->
+
+<html>
+<head>
+    <title>Our wedding guestbook!</title>
+    <script>
+        const postMessage = (e) => {
+            e.preventDefault();
+            const display_button = document.getElementById('display').checked;
+            const display = display_button ? 1 : 0;
+
+            const name = document.getElementById("name").value;
+            const message = document.getElementById("message").value;
+            const address = document.getElementById("address").value;
+
+            const queryParams = `name=${name}&message=${message}&display=${display}&address=${address}`;
+            fetch(`/api/create_message?${queryParams}`)
+                .then((res) => res.json())
+                .then(() => {
+                    window.location.reload();
+                });
+        }
+        window.onload = function () {
+            const getMessagesURL = "/api/get_all_messages";
+            fetch(getMessagesURL)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    const ul = document.getElementById('messages');
+                    const list = document.createDocumentFragment();
+
+                    const allMessages = data;
+                    allMessages.map(function (msg) {
+                        const li = document.createElement('li');
+                        list.appendChild(li);
+                        
+                        const table = document.createElement('table');
+                        li.appendChild(table);
+
+                        const tbody = document.createElement('tbody');
+                        table.appendChild(tbody);
+
+                        const trName = document.createElement('tr');
+                        const trAddress = document.createElement('tr');
+                        const trMessage = document.createElement('tr');
+                        tbody.appendChild(trName);
+                        tbody.appendChild(trAddress);
+                        tbody.appendChild(trMessage);
+
+                        const tdName = document.createElement('td');
+                        const tdAddress = document.createElement('td');
+                        const tdMessage = document.createElement('td');
+                        trName.appendChild(tdName);
+                        trAddress.appendChild(tdAddress);
+                        trMessage.appendChild(tdMessage);
+
+                        tdName.innerHTML = `From: ${msg.name}`;
+                        tdAddress.innerHTML = `Address: ${msg.address}`;
+                        tdMessage.innerHTML = `Message: ${msg.message}`;
+
+                        ul.appendChild(list);
+                    });
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+
+            const form = document.getElementById("new_post");
+            form.addEventListener("submit", postMessage);
+        };
+    </script>
+</head>
+
+<body>
+    <div>
+        <form action="filter.html" method="GET">
+          <input name="name" type="text" placeholder='Enter the name of a person whose messages you want to see...' />
+          <input type="submit" value="Filter" />
+        </form>
+    </div>
+    <div>
+        <form id="new_post" method="GET">
+            <table>
+                <tbody>
+                    <tr>
+                        <td width="4cm">Your name:</td>
+                        <td><input type="text" name="name" id="name" placeholder="Your  name..." /></td>
+                    </tr>
+                    <tr>
+                        <td width="4cm">Your address:</td>
+                        <td><input type="text" name="address" id="address" placeholder="Your  address..." /></td>
+                    </tr>
+                    <tr>
+                        <td width="4cm">Your message:</td>
+                        <td><textarea name="message" id="message" rows="5" cols="60" ref=placeholder="Your message..."></textarea></td>
+                    </tr>
+                    <tr>
+                        <td width="4cm">Show?</td>
+                        <td><input type="checkbox" id="display" name="display" /></td>
+                      </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Post" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    
+    <div>
+        <span>Here are messages guests have left so far</span>
+
+        <ul id="messages">
+        </ul>
+    </div>
+    
+</body>
+
+</html>
