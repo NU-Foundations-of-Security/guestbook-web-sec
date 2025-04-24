@@ -43,7 +43,7 @@ export default function Home() {
             
             {<ul className={styles["messages"]}>
                 {messages?.map(( message ) => {
-                    return <li className={styles["li"]}>
+                    return <li className={styles["li"]} key="msg">
                         <table><tbody>
                             <tr>
                                 <td>Message: {message}</td>
