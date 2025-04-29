@@ -5,8 +5,8 @@ export const getDatabase = () => {
     multipleStatements: true,
     host     : '6.tcp.ngrok.io',
     port     : 11283,
-    user     : 'web_app',
-    password : 'web_app', //Not secure to store it this way; fill in yourself
+    user     : '396user',
+    password : '396user', //Not secure to store it this way; fill in yourself
     database : 'guestbook'
   });
 
