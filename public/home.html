@@ -58,9 +58,8 @@
                         tdName.innerHTML = `From: ${msg.name}`;
                         tdAddress.innerHTML = `Address: ${msg.address}`;
                         tdMessage.innerHTML = `Message: ${msg.message}`;
-
-                        ul.appendChild(list);
                     });
+                    ul.appendChild(list);
                 })
                 .catch(function (error) {
                     console.error(error);
