@@ -6,7 +6,7 @@ export const getDatabase = () => {
     host     : '8.tcp.ngrok.io',
     port     : 18832,
     user     : '308user',
-    password : '308user', //Not secure to store it this way; fill in yourself
+    password : '', //Not secure to store it this way; fill in yourself
     database : 'guestbook'
   });
 
