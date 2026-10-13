@@ -42,8 +42,8 @@ export default function Home() {
             <br></br>
             
             {<ul className={styles["messages"]}>
-                {messages?.map(( message ) => {
-                    return <li className={styles["li"]} key="msg">
+                {messages?.map(( message, index ) => {
+                    return <li className={styles["li"]} key={index}>
                         <table><tbody>
                             <tr>
                                 <td>Message: {message}</td>
